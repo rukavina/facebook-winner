@@ -20,17 +20,15 @@ Facebook Winner helps you select a page, list posts, export comments, export lik
 
 ## Quick Start Guide
 
-### Step 1: copy files
+* in `src/js` copy `dist.config.js` to `config.js`
+* in project's folder run `bower install`
+* open project from `localhost` domain
 
-Copy **source** folder contents to your domain.
-
-### Step 2: create your facebook application
+## Run on your own domain
 
 You have to create your own facebook application for your domain. You have to go to [https://developers.facebook.com/apps/](https://developers.facebook.com/apps/) and create new app. Just add _Website_ platform and set "App Domains" to point to your domain, as well as site URL.
 
 Please read [this tutorial](https://developers.facebook.com/docs/opengraph/getting-started#create-app) for more information.
-
-### Step 3: update app info
 
 All this is left is to update facebook app id in **config.js**:
 
@@ -48,6 +46,7 @@ facebook:{
 You can setup different app options in **config.js** file.
 
 | option | description | default | possible values |
+| ---    | ---         | ---     | ---             |
 |pageId|Specify ID of a facebook page if you want to show only this page posts, leave null for free page selection|null|null/string|
 |facebook.appId|ID of a custom app on [Facebook platform](https://developers.facebook.com/apps/). Please read [this tutorial](https://developers.facebook.com/docs/opengraph/getting-started#create-app)|''|string|
 |facebook.scope|Comma separated list of [permissions](https://developers.facebook.com/docs/reference/login/) needed for facebook app. "manage_pages" is needed if _showAdminPages_ is true.|'user_likes'|string|
@@ -55,18 +54,5 @@ You can setup different app options in **config.js** file.
 |perPage|Count of pages and post displayed per page|20|int|
 |showAdminPages|If the app should list pages for which logged in user is administrator. For this option _facebook.scope_ must include _manage_pages_ permission. Else liked pages are listed.|false|boolean|
 |dateTimeFormat|Date/time [format](https://github.com/agschwender/jquery.formatDateTime) for pages|'mm/dd/y g:ii a'|string|
-|loadWinners|Function which loads existing winners from a storage.|
-```
-loadWinners: function(postId){
-    var winners = JSON.parse(localStorage.getItem('mgw_' + postId));
-    if(!winners){
-        winners = []
-    }
-    return winners;
-}
-```|function|
-|saveWinners|Function which stores winners to a storage. Ex. make ajax call to trigger server script which stores to a DB.|
-```
-saveWinners: function(postId, winners){
-    localStorage.setItem('mgw_' + postId, JSON.stringify(winners));
-}```||function|
+|loadWinners|Function which loads existing winners from a storage.|```loadWinners: function(postId){var winners = JSON.parse(localStorage.getItem('mgw_' + postId));if(!winners){winners = []} return winners;}```|function|
+|saveWinners|Function which stores winners to a storage. Ex. make ajax call to trigger server script which stores to a DB.|```saveWinners: function(postId, winners){localStorage.setItem('mgw_' + postId, JSON.stringify(winners));}```|function|
