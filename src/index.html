@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Facebook Winner</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+
+        <link rel="stylesheet" href="css/style.css">
+
+        <script data-main="js/main" src="bower_components/requirejs/require.js"></script>
+        <!--<script src="js/libs/require/require.js"></script>
+        <script>
+            //opera workarround
+            require.config({
+                baseUrl: "js"
+            });
+            //load depenencies and run
+            require(['main']);
+        </script>-->        
+    </head>
+    <body>
+        <div id="fb-root"></div>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Facebook Winner</a>                    
+            </div>
+            <img class="navbar-text" id="loader" alt="Loading..." src="imgs/ajax-loader.gif" style="display: none"/>
+            <div class="navbar-collapse collapse">
+                <ul id="login" class="nav navbar-nav navbar-right">
+                </ul>                    
+            </div><!--/.nav-collapse -->    
+        </nav>
+        <div class="container">
+            <div id="breadcrumb"></div>
+            <div id="message" style="display: none">                
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <div class="text"></div>
+                </div>                
+            </div>            
+            <div id="page" class="container">Loading....</div>
+        </div>
+    </body>    
+</html>

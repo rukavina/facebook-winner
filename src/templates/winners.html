@@ -1,0 +1,45 @@
+<h1>Winners</h1>
+
+<form class="form" role="form">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" id="likers" value="1" checked="checked">
+        The ones who liked the post are candidates
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" id="commenters" value="1" checked="checked">
+        The ones who commented the post are candidates
+      </label>
+    </div>
+    <div class="checkbox" id="uniquePanel">
+      <label>
+        <input type="checkbox" value="1" checked="checked" id="commentersUnique">
+        A commenter can participate only once - consider only unique submissions
+      </label>
+    </div>
+    <button type="submit" id="generate" class="btn btn-primary">Get the Winner!</button>
+</form>
+<div id="winners"></div>
+
+<div id="winnerProgessDialog" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Loading...</h4>
+            </div>
+            <div class="modal-body">
+                <div class="progress">
+                    <div id="winnerProgess" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                        <span class="sr-only">60%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

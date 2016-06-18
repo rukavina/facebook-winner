@@ -1,0 +1,24 @@
+<% if(winners.length) {%>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Picture</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% for(var winnerIndex in winners) {
+        var winner = winners[winnerIndex];
+    %>
+        <tr data-index="<%= winnerIndex %>" data-id="<%= winner.id %>">
+            <td><a href="https://www.facebook.com/<%= winner.id %>" target="_blank"><img src="https://graph.facebook.com/<%= winner.id %>/picture?width=32&height=32" width="32" height="32"/></a></td>
+            <td><a href="https://www.facebook.com/<%= winner.id %>" target="_blank"><%= winner.id %></a></td>
+            <td><a href="https://www.facebook.com/<%= winner.id %>" target="_blank"><%= winner.name %></a></td>
+            <td><button type="button" class="btn btn-link remove">Remove</button></td>
+        </tr>
+    <% } %>
+    </tbody>
+</table>
+<% }%>

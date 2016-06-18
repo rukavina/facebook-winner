@@ -1,0 +1,16 @@
+body { padding-top: 70px; }
+span.postType{
+    font-size: 2em;
+}
+
+img.postPicture{
+    padding: 0px 10px 20px 0px;
+}
+
+div.pageBox{
+    min-height: 300px;
+}
+
+div.pageInnerBox{
+    min-height: 280px;
+}

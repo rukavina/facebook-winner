@@ -1,0 +1,76 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th width="5%"></th>
+            <th width="15%">Time</th>            
+            <th width="40%">Message</th>
+            <th width="20%">Winners</th>
+            <th width="20%">Export</th>
+        </tr>
+    </thead>
+    <tbody>
+    <%
+        var types = {
+            "status":"star",
+            "link":"link",
+            "photo":"picture",
+            "video":"film",
+        }
+        if(typeof data === 'undefined'){
+            data = [];
+        }        
+        for(var postIndex in data) {
+            var post = data[postIndex];
+            var winners = Config.loadWinners(post.id);
+            var postDate = new Date();
+            postDate.setISO8601(post.updated_time);
+            var postType = (types[post.type])?types[post.type]: "globe";
+            var postName = (post.message)? post.message: post.story? post.story:post.name;
+    %>        
+        <tr data-id="<%= post.id %>">
+            <td><span class="postType glyphicon glyphicon-<%= postType %>"></span></td>
+            <td><%= $.formatDateTime(Config.dateTimeFormat, postDate) %></td>            
+            <td>
+                <% if(post.picture){print('<img src="' + post.picture + '" alt="" width="75" class="postPicture pull-left">');}%>
+                <% if(postName){print(postName.replace(/\n/g, '<br />'))}%>
+            </td>
+            <td>
+                <a href="#pages/<%= pageId%>/winners/<%= post.id%>" class="winners">Winners<% if(winners.length > 0){print(' <span class="badge">' + winners.length + '</span>');}%></a>
+            </td>
+            <td>
+                <% if(post.comments){print('<a href="#" class="export comments" download="' + post.id + '_comments.csv">Comments <span class="badge">' + post.comments.summary.total_count + '</span></a><br>')}%>                
+                <% if(post.likes){print('<a href="#" class="export likes" download="' + post.id + '_likes.csv">Likes <span class="badge">' + post.likes.summary.total_count + '</span></a>')}%>
+            </td>
+        </tr>
+    <% } %>
+    </tbody>
+</table>
+<% if (typeof paging != 'undefined' && paging) { %>
+<ul class="pager">
+    <% if (paging.previous) { %>
+    <li><a href="#" class="previous">&larr; Previous</a></li>
+    <% } %>
+    <% if (paging.next) { %>
+    <li><a href="#" class="next">Next &rarr;</a></li>
+    <% } %>
+</ul>
+<% } %>
+<div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Download</h4>
+            </div>
+            <div class="modal-body">
+                <p>The file is ready.</p>
+                <a href="#" download="" id="downloadLink" target="_blank">Click here to download the file</a>
+                <p><small>If download is not working please click <a href="#" id="csvContentBtn">here</a> and copy content from the box into your csv text file:</small></p>
+                <textarea id="csvContent" style="width: 500px; height: 300px; display: none"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

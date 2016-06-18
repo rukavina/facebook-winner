@@ -1,0 +1,15 @@
+<ol class="breadcrumb">
+    <%
+      if(typeof breadcrumbs === 'undefined'){
+        breadcrumbs = [];
+      }
+      for(var name in breadcrumbs) {
+        var breadcrumbHref = breadcrumbs[name];
+        if(breadcrumbHref){
+    %>
+        <li><a href="<%= breadcrumbHref %>"><%= name %></a></li>
+        <% }else{ %>
+        <li class="active"><%= name %></li>
+        <% } %>
+    <% } %>
+</ol>

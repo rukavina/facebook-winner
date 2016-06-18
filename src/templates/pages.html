@@ -1,0 +1,39 @@
+<h2>Type page name</h2>
+<form class="form-inline" role="form">
+    <div class="form-group">
+        <label for="pageId" class="sr-only">Page ID or Name</label>
+        <input type="text" class="form-control" id="pageId" placeholder="Enter page ID or name">
+    </div>
+    <button type="submit" id="selectPage" class="btn btn-primary">Select Page</button>
+</form>
+
+<h2>Or select from the list</h2>
+
+<div class="row">
+<%
+  if(typeof data === 'undefined'){
+    data = [];
+  }
+  for(var pageIndex in data) {
+%>
+    <div class="pageBox col-sm-3 col-md-2">
+        <div class="pageInnerBox thumbnail">
+            <a href="#pages/<%= data[pageIndex].id %>/feed" data-page_id="<%= data[pageIndex].id %>" class="pageLink thumbnail"><img width="75" height="75" src="https://graph.facebook.com/<%= data[pageIndex].id %>/picture?width=75&height=75" alt=""></a>
+            <div class="caption">
+                <h4><%= data[pageIndex].name %></h4>
+                <p><a href="#pages/<%= data[pageIndex].id %>/feed" data-page_id="<%= data[pageIndex].id %>" class="pageLink btn btn-primary">Select</a></p>
+            </div>
+        </div>
+    </div>
+<% } %>
+</div>
+<% if (typeof paging != 'undefined' && paging) { %>
+<ul class="pager">
+    <% if (paging.previous) { %>
+    <li><a href="#" class="previous">&larr; Previous</a></li>
+    <% } %>
+    <% if (paging.next) { %>
+    <li><a href="#" class="next">Next &rarr;</a></li>
+    <% } %>
+</ul>
+<% } %>
